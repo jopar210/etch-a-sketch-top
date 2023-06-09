@@ -1,9 +1,20 @@
+////////////////////////////////////
+// VARIABLES
+////////////////////////////////////
+
 const gridContainer = document.querySelector(".grid-container");
 const gridSlider = document.querySelector(".grid-range");
 const gridRangeValue = document.querySelector(".grid-range-value");
+const eraserBtn = document.querySelector(".eraser-btn");
+const rainbowBtn = document.querySelector(".rainbow-btn");
+const clearBtn = document.querySelector(".clear-btn");
 let gridRange = gridSlider.value;
 let gridSize = Math.pow(gridSlider.value, 2);
 let gridDivs;
+
+////////////////////////////////////
+// FUNCTIONS
+////////////////////////////////////
 
 const generateGrid = function (size) {
   for (i = 0; i < size; i++) {
@@ -32,13 +43,6 @@ const eraseGrid = function () {
 
 generateGrid(gridSize); // default grid size 16x16
 
-gridSlider.addEventListener("input", function (e) {
-  eraseGrid();
-  gridRange = gridSlider.value;
-  gridSize = Math.pow(e.target.value, 2);
-  generateGrid(gridSize);
-});
-
 const changeColorEraser = function () {
   // change div background to white
 };
@@ -53,4 +57,21 @@ const changeColorSelected = function () {
 
 const clearGrid = function () {
   // eraseGrid and create new one with the same gridSize
+  eraseGrid();
+  generateGrid(gridSize);
 };
+
+////////////////////////////////////
+// EVENTS
+////////////////////////////////////
+
+gridSlider.addEventListener("input", function (e) {
+  eraseGrid();
+  gridRange = gridSlider.value;
+  gridSize = Math.pow(e.target.value, 2);
+  generateGrid(gridSize);
+});
+
+eraserBtn.addEventListener("click", changeColorEraser);
+rainbowBtn.addEventListener("click", changeColorRainbow);
+clearBtn.addEventListener("click", clearGrid);
