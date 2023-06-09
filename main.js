@@ -1,14 +1,20 @@
 const gridContainer = document.querySelector(".grid-container");
-console.log(gridContainer);
+let gridDivs;
 
 const generateGrid = function (gridSize) {
-  for (i = 0; i <= gridSize; i++) {
+  for (i = 0; i < gridSize; i++) {
     gridContainer.appendChild(document.createElement("div"));
   }
-  const divs = document.querySelectorAll("div");
-  console.log(divs);
-  divs.forEach((div) => div.classList.add("grid-element"));
-  divs.forEach((div) => (div.textContent = "Hello World"));
+
+  gridDivs = document.querySelectorAll("div");
+  gridDivs.forEach((div) => div.classList.add("grid-element"));
 };
 
-generateGrid(15);
+// generateGrid(256);
+generateGrid(1024);
+
+gridDivs.forEach((div) => {
+  div.addEventListener("mouseover", function (e) {
+    div.classList.add("grid-element-painted");
+  });
+});
