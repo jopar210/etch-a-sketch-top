@@ -1,0 +1,16 @@
+.grid-container {
+  width: 50rem;
+  height: 50rem;
+  background-color: coral;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-element {
+  width: 10rem;
+  height: 10rem;
+  background-color: aqua;
+}
