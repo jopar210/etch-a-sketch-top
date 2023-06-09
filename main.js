@@ -8,15 +8,16 @@ const gridRangeValue = document.querySelector(".grid-range-value");
 const eraserBtn = document.querySelector(".eraser-btn");
 const rainbowBtn = document.querySelector(".rainbow-btn");
 const clearBtn = document.querySelector(".clear-btn");
+let gridDivs;
+// let coloredGridElement;
 let gridRange = gridSlider.value;
 let gridSize = Math.pow(gridSlider.value, 2);
-let gridDivs;
 
 ////////////////////////////////////
 // FUNCTIONS
 ////////////////////////////////////
 
-const generateGrid = function (size) {
+const generateGrid = function (size, color) {
   for (i = 0; i < size; i++) {
     const gridDiv = gridContainer.appendChild(document.createElement("div"));
     gridDiv.classList.add("grid-element");
@@ -27,12 +28,21 @@ const generateGrid = function (size) {
   gridDivs.forEach((div) => {
     div.style.width = `${350 / gridRange}px`;
     div.style.height = `${350 / gridRange}px`;
-    div.addEventListener("mouseover", function (e) {
-      div.classList.add("grid-element-painted");
-    });
+    // div.addEventListener("mouseover", function (e) {
+    //   div.classList.add("grid-element-painted");
+    // });
   });
 
+  paintDivs(color);
   gridRangeValue.textContent = `${gridRange}X${gridRange}`;
+};
+
+const paintDivs = function (color) {
+  gridDivs.forEach((div) => {
+    div.addEventListener("mouseover", function (e) {
+      div.style.backgroundColor = `${color}`;
+    });
+  });
 };
 
 const eraseGrid = function () {
@@ -42,9 +52,14 @@ const eraseGrid = function () {
 };
 
 generateGrid(gridSize); // default grid size 16x16
+paintDivs("black"); // default painting color
+// coloredGridElement = document.querySelectorAll(".grid-element-painted");
 
 const changeColorEraser = function () {
   // change div background to white
+  //   coloredGridElement.forEach((div) => (div.style.backgroundColor = "white"));
+  //   coloredGridElement.forEach((div) => {});
+  paintDivs("white");
 };
 
 const changeColorRainbow = function () {
@@ -56,7 +71,6 @@ const changeColorSelected = function () {
 };
 
 const clearGrid = function () {
-  // eraseGrid and create new one with the same gridSize
   eraseGrid();
   generateGrid(gridSize);
 };
@@ -69,7 +83,7 @@ gridSlider.addEventListener("input", function (e) {
   eraseGrid();
   gridRange = gridSlider.value;
   gridSize = Math.pow(e.target.value, 2);
-  generateGrid(gridSize);
+  generateGrid(gridSize, "black");
 });
 
 eraserBtn.addEventListener("click", changeColorEraser);
