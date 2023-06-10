@@ -7,7 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-image: url(./images/background2.jpg);
+  background-image: url(./images/background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #999;
@@ -17,6 +17,8 @@ h1 {
   margin-top: 3rem;
   margin-bottom: 1rem;
   text-align: center;
+  color: #444;
+  font-size: 3.5rem;
 }
 
 h4 {
@@ -25,8 +27,8 @@ h4 {
 
 .grid-container {
   margin: auto;
-  width: 350px;
-  height: 350px;
+  width: 500px;
+  height: 400px;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 2rem;
@@ -39,23 +41,6 @@ h4 {
   height: 10.9375px;
 }
 
-/* .color-picker-container {
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  overflow: hidden;
-  background-color: black;
-  cursor: pointer;
-  border: 3px solid #444;
-}
-
-.color-picker {
-  display: none;
-  width: 3rem;
-  height: 3rem;
-  border: none;
-} */
-
 .color-picker-container {
   height: 3em;
   width: 3em;
@@ -66,6 +51,7 @@ h4 {
   align-items: center;
   position: relative;
 }
+
 .color-picker-container input[type="color"] {
   position: absolute;
   height: 6em;
@@ -104,8 +90,35 @@ input[type="range"] {
 
 .footer {
   margin-top: auto;
-  height: 50px;
+  height: 70px;
   width: 100%;
-  background-color: #999;
+  background-color: #bbbb;
   z-index: 1;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.6rem;
+}
+
+.copyright-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.github-icon {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  transition: all 500ms;
+}
+
+.github-icon:hover {
+  transform: translateY(-5px);
 }

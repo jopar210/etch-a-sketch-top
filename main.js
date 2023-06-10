@@ -27,8 +27,8 @@ const generateGrid = function (size, color) {
   gridDivs = document.querySelectorAll(".grid-element");
 
   gridDivs.forEach((div) => {
-    div.style.width = `${350 / gridRange}px`;
-    div.style.height = `${350 / gridRange}px`;
+    div.style.width = `${500 / gridRange}px`;
+    div.style.height = `${400 / gridRange}px`;
   });
 
   paintDivs(color);
