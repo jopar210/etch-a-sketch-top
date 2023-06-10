@@ -8,8 +8,9 @@ const gridRangeValue = document.querySelector(".grid-range-value");
 const eraserBtn = document.querySelector(".eraser-btn");
 const rainbowBtn = document.querySelector(".rainbow-btn");
 const clearBtn = document.querySelector(".clear-btn");
+const colorPickerContainer = document.querySelector(".color-picker-container");
+let colorValue = document.querySelector(".color-picker").value;
 let gridDivs;
-// let coloredGridElement;
 let gridRange = gridSlider.value;
 let gridSize = Math.pow(gridSlider.value, 2);
 
@@ -28,9 +29,6 @@ const generateGrid = function (size, color) {
   gridDivs.forEach((div) => {
     div.style.width = `${350 / gridRange}px`;
     div.style.height = `${350 / gridRange}px`;
-    // div.addEventListener("mouseover", function (e) {
-    //   div.classList.add("grid-element-painted");
-    // });
   });
 
   paintDivs(color);
@@ -52,13 +50,9 @@ const eraseGrid = function () {
 };
 
 generateGrid(gridSize); // default grid size 16x16
-paintDivs("black"); // default painting color
-// coloredGridElement = document.querySelectorAll(".grid-element-painted");
+paintDivs(colorValue); // default painting color #000
 
 const changeColorEraser = function () {
-  // change div background to white
-  //   coloredGridElement.forEach((div) => (div.style.backgroundColor = "white"));
-  //   coloredGridElement.forEach((div) => {});
   paintDivs("white");
 };
 
@@ -67,12 +61,13 @@ const changeColorRainbow = function () {
 };
 
 const changeColorSelected = function () {
-  // change div background to selected color in a selector
+  colorValue = document.querySelector(".color-picker").value;
+  paintDivs(colorValue);
 };
 
 const clearGrid = function () {
   eraseGrid();
-  generateGrid(gridSize);
+  generateGrid(gridSize, colorValue);
 };
 
 ////////////////////////////////////
@@ -83,7 +78,12 @@ gridSlider.addEventListener("input", function (e) {
   eraseGrid();
   gridRange = gridSlider.value;
   gridSize = Math.pow(e.target.value, 2);
-  generateGrid(gridSize, "black");
+  generateGrid(gridSize, colorValue);
+});
+
+colorPickerContainer.addEventListener("input", function () {
+  colorValue = document.querySelector(".color-picker").value;
+  changeColorSelected(colorValue);
 });
 
 eraserBtn.addEventListener("click", changeColorEraser);
