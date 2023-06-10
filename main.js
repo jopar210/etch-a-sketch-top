@@ -57,7 +57,12 @@ const changeColorEraser = function () {
 };
 
 const changeColorRainbow = function () {
-  // change div background to random
+  gridDivs.forEach((div) => {
+    div.addEventListener("mouseover", function (e) {
+      const color = getRandomColor();
+      div.style.backgroundColor = `${color}`;
+    });
+  });
 };
 
 const changeColorSelected = function () {
@@ -69,6 +74,15 @@ const clearGrid = function () {
   eraseGrid();
   generateGrid(gridSize, colorValue);
 };
+
+function getRandomColor() {
+  var letters = "0123456789ABCDEF";
+  var color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
 ////////////////////////////////////
 // EVENTS
@@ -87,5 +101,9 @@ colorPickerContainer.addEventListener("input", function () {
 });
 
 eraserBtn.addEventListener("click", changeColorEraser);
-rainbowBtn.addEventListener("click", changeColorRainbow);
+
+rainbowBtn.addEventListener("click", function () {
+  changeColorRainbow(getRandomColor());
+});
+
 clearBtn.addEventListener("click", clearGrid);
